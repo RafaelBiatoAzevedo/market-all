@@ -12,9 +12,7 @@ routerAuth.post(
 
 routerAuth.post(
   '/signin',
-  rescue(async (req: any, res: any) => {
-    if ('rafa' !== req.body) throw Error('No insert customer');
-  })
+  rescue((req: any, res: any) => controllers.signinController(req, res))
 );
 
 routerAuth.use(authErrors);

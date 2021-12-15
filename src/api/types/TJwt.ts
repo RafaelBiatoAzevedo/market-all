@@ -1,8 +1,8 @@
 export type TToken = string;
 
 export type TPayload = {
-  name: string;
   email: string;
+  password: string;
 };
 
 export type TJwtConfig = {

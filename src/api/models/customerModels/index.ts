@@ -5,6 +5,7 @@ const getCustomerByName = require('./getCustomerByName');
 const getCustomerByDocument = require('./getCustomerByDocument');
 const getCustomerByPhone = require('./getCustomerByPhone');
 const getCustomerByEmail = require('./getCustomerByEmail');
+const getCustomerForSignin = require('./getCustomerForSignin');
 
 module.exports = {
   createCustomer,
@@ -14,4 +15,5 @@ module.exports = {
   getCustomerByDocument,
   getCustomerByPhone,
   getCustomerByEmail,
+  getCustomerForSignin,
 };
