@@ -1,12 +1,12 @@
-const models = require('../models');
 const Joi = require('joi');
 const {
+  createCustomer,
   getCustomerByDocument,
   getCustomerByPhone,
   getCustomerByEmail,
-} = require('../models/customerModels');
+} = require('../../models/customerModels');
 
-import { TCustomerSignup } from '../types/TCustomerSignup';
+import { TCustomerSignup } from '../../types/TCustomerSignup';
 
 const schema = Joi.object({
   name: Joi.string().required(),
@@ -36,7 +36,7 @@ module.exports = async (customerData: TCustomerSignup) => {
   )
     throw Error('Customer already registered');
 
-  const result = await models.customerModels.createCustomer(customerData);
+  const result = await createCustomer(customerData);
 
   if (result === null) throw Error('No insert customer');
 

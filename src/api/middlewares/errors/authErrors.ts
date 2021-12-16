@@ -11,7 +11,7 @@ module.exports = (err: any, _req: any, _res: any, next: any) => {
     return next(newError);
   }
 
-  if (err.message === 'No insert customer') {
+  if (err.message === 'No insert customer' || err.message === 'No signin') {
     const newError: any = new Error(err.message);
     newError.status = 409;
     return next(newError);
@@ -23,5 +23,5 @@ module.exports = (err: any, _req: any, _res: any, next: any) => {
     return next(newError);
   }
 
-  next(err);
+  return next(err);
 };
