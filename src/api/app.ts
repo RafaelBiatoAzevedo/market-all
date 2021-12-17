@@ -13,6 +13,7 @@ app.use(bodyParse.json());
 app.use('/auth', routes.routerAuth);
 app.use('/devices', routes.routerDevices);
 app.use('/companies', routes.routerCompanies);
+app.use('/cashiers', routes.routerCashiers);
 
 app.use(responseError);
 

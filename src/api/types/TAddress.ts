@@ -1,5 +1,5 @@
 export type TAddress = {
-  _id?: string;
+  _id: string;
   country: string;
   state: string;
   city: string;
@@ -7,5 +7,5 @@ export type TAddress = {
   street: string;
   number: string;
   postalCode: string;
-  complement?: string;
+  complement: string;
 };

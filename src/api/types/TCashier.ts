@@ -1,0 +1,32 @@
+import { TCompany } from './TCompany';
+import { TDevice } from './TDevice';
+import { TOrder } from './TOrders';
+import { TTransaction } from './TTransactions';
+
+export type TCashier = {
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  segment: string;
+  company: TCompany;
+  device: TDevice;
+  user: string;
+  status: 'open' | 'closed' | 'blocked';
+  transactions: TTransaction[];
+  orders: TOrder;
+  orderAmountMax: number;
+  orderAmountAvg: number;
+  moneyPaymentsSum: number;
+  moneyChangeSum: number;
+  cardPaymentsSum: number;
+  boletoPaymentsSum: number;
+  pixPaymentsSum: number;
+  prepaidPaymentsSum: number;
+  giftPaymentsSum: number;
+  depositTransactionsSum: number;
+  withdrawTransactionsSum: number;
+  moneyReceivedAmount: number;
+  cardReceivedAmount: number;
+  blockedAt: string;
+  closedAt: string;
+};

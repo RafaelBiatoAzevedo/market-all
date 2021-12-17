@@ -60,7 +60,7 @@ module.exports = async (signinData: TSignin) => {
   return {
     token: await createToken({ email, password }),
     ...customer,
-    access: [{ companies }],
+    access: [...companies],
     permissions: [],
     device,
   };

@@ -6,7 +6,7 @@ export type TCompany = {
   _id?: string;
   type: 'private' | 'legal';
   document: string;
-  segment?: string;
+  segment: string;
   name: string;
   stateInscription: string;
   addresses: TAddress[];
@@ -16,6 +16,6 @@ export type TCompany = {
   logoUrl: string;
   planId: string;
   card: TCard;
-  createdAt?: string;
-  updatedAt?: string;
+  createdAt: string;
+  updatedAt: string;
 };
