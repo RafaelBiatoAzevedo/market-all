@@ -1,16 +1,17 @@
 import connection from '../connectionMongoDb';
 
 module.exports = async () => {
-  const result = await connection().then((db: any) =>
+  const productsWithCategoryId = await connection().then((db: any) =>
     db
       .collection('products')
       .aggregate([
-        { $match: {} },
+        { $match: { categoryId: { $exists: true } } },
+        { $addFields: { objectId: { $toObjectId: '$categoryId' } } },
         {
           $lookup: {
             from: 'categories',
-            localField: 'categoryId',
-            foreignField: 'categoryId',
+            localField: 'objectId',
+            foreignField: '_id',
             as: 'category',
           },
         },
@@ -19,5 +20,12 @@ module.exports = async () => {
       .toArray()
   );
 
-  return result;
+  const productsWithinCatgeryId = await connection().then((db: any) =>
+    db
+      .collection('products')
+      .find({ categoryId: { $exists: false } })
+      .toArray()
+  );
+
+  return [...productsWithCategoryId, ...productsWithinCatgeryId];
 };

@@ -4,7 +4,7 @@ import connection from '../connectionMongoDb';
 module.exports = async (productId: string) => {
   if (!ObjectId.isValid(productId)) return null;
 
-  const result = await connection().then((db: any) =>
+  const productWithCategoryId = await connection().then((db: any) =>
     db
       .collection('products')
       .aggregate([
@@ -23,5 +23,11 @@ module.exports = async (productId: string) => {
       .toArray()
   );
 
-  return result;
+  if (productWithCategoryId.length > 0) {
+    return productWithCategoryId[0];
+  }
+
+  return await connection().then((db: any) =>
+    db.collection('products').findOne({ _id: new ObjectId(productId) })
+  );
 };
