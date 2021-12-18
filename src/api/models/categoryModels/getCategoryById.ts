@@ -18,6 +18,7 @@ module.exports = async (categoryId: string) => {
             as: 'subcategories',
           },
         },
+        { $project: { categoryId: 0 } },
       ])
       .toArray()
   );

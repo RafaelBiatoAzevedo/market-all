@@ -1,12 +1,9 @@
-import { TCategory } from '../../types/TCategory';
-
 export {};
 const Joi = require('joi');
 
 const {
   createCategory,
   getCategoryByName,
-  getCategoriesByCategoryId,
 } = require('../../models/categoryModels');
 
 const schema = Joi.object({

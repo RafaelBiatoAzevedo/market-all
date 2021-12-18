@@ -3,19 +3,18 @@ import connection from '../connectionMongoDb';
 module.exports = async () => {
   const result = await connection().then((db: any) =>
     db
-      .collection('categories')
+      .collection('products')
       .aggregate([
-        { $match: { categoryId: { $exists: false } } },
-        { $addFields: { categoryId: { $toString: '$_id' } } },
+        { $match: {} },
         {
           $lookup: {
             from: 'categories',
             localField: 'categoryId',
             foreignField: 'categoryId',
-            as: 'subcategories',
+            as: 'category',
           },
         },
-        { $project: { categoryId: 0 } },
+        { $unwind: '$category' },
       ])
       .toArray()
   );

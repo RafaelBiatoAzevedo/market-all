@@ -15,8 +15,8 @@ app.use('/devices', routes.routerDevices);
 app.use('/companies', routes.routerCompanies);
 app.use('/cashiers', routes.routerCashiers);
 app.use('/categories', routes.routerCategories);
+app.use('/products', routes.routerProducts);
 // app.use('/orders', routes.routerOrders);
-// app.use('/products', routes.routerProducts);
 
 app.use(responseError);
 

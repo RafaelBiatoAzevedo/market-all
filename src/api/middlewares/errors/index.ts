@@ -5,6 +5,7 @@ const tokenErrors = require('./tokenErrors');
 const companiesErrors = require('./companiesErrors');
 const cashiersErrors = require('./cashiersErrors');
 const categoriesErrors = require('./categoriesErrors');
+const productsErrors = require('./categoriesErrors');
 
 module.exports = {
   authErrors,
@@ -14,4 +15,5 @@ module.exports = {
   companiesErrors,
   cashiersErrors,
   categoriesErrors,
+  productsErrors,
 };
