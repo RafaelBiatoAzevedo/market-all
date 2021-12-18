@@ -11,7 +11,7 @@ module.exports = async (deviceData: TDevice, userId: string) => {
     createdBy: '',
   });
 
-  if (result === null) throw Error('No insert device');
+  if (result === null) throw Error('No inserted device');
 
   return result;
 };

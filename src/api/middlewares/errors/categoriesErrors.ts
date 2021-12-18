@@ -5,19 +5,16 @@ module.exports = (err: any, _req: any, _res: any, next: any) => {
     return next(newError);
   }
 
-  if (err.message === 'Customer already registered') {
+  if (
+    err.message === 'No inserted category' ||
+    err.message === 'Category already registered'
+  ) {
     const newError: any = new Error(err.message);
     newError.status = 409;
     return next(newError);
   }
 
-  if (err.message === 'No inserted customer' || err.message === 'No signin') {
-    const newError: any = new Error(err.message);
-    newError.status = 409;
-    return next(newError);
-  }
-
-  if (err.message === 'Not found customer') {
+  if (err.message === 'Not found category') {
     const newError: any = new Error(err.message);
     newError.status = 404;
     return next(newError);

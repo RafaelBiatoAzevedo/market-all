@@ -1,5 +1,8 @@
 const { getCustomerForSignin } = require('../../models/customerModels');
-const { createDevice, updateDevice } = require('../../models/deviceModels');
+const {
+  createDevice,
+  updateLastSigninInDevice,
+} = require('../../models/deviceModels');
 const { getCompaniesByCustomerId } = require('../../models/companyModels');
 const Joi = require('joi');
 const { createToken } = require('../../utils/jwt');
@@ -39,8 +42,12 @@ module.exports = async (signinData: TSignin) => {
   let device;
 
   if (deviceData.deviceId) {
-    const { deviceId, ...deviceInfo } = deviceData;
-    device = await updateDevice({ _id: deviceId, ...deviceInfo }, customer._id);
+    const { deviceId } = deviceData;
+    device = await updateLastSigninInDevice(deviceId, {
+      status: 'active',
+      lastSigninAt: new Date(),
+      lastSigninBy: customer._id,
+    });
   } else {
     device = await createDevice({
       ...deviceData,

@@ -4,6 +4,7 @@ export type TTransaction = {
   updatedAt: string;
   segment: string;
   company: string;
+  cashierId: string;
   transactionType: 'payment' | 'deposit' | 'withdraw' | 'change';
   paymentType:
     | 'money'

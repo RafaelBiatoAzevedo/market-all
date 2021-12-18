@@ -19,7 +19,7 @@ export type TCashier = {
   moneyPaymentsSum: number;
   moneyChangeSum: number;
   cardPaymentsSum: number;
-  boletoPaymentsSum: number;
+  ticketPaymentsSum: number;
   pixPaymentsSum: number;
   prepaidPaymentsSum: number;
   giftPaymentsSum: number;
@@ -27,6 +27,10 @@ export type TCashier = {
   withdrawTransactionsSum: number;
   moneyReceivedAmount: number;
   cardReceivedAmount: number;
+  pixReceivedAmount: number;
+  ticketReceivedAmount: number;
+  prepaidReceivedAmount: number;
+  giftReceivedAmount: number;
   blockedAt: string;
   closedAt: string;
 };

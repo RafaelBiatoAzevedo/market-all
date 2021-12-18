@@ -1,11 +1,11 @@
 export {};
 
-const { getCashierByIdService } = require('../../services/cashierServices');
+const { getCategoryByIdService } = require('../../services/categoryServices');
 
 module.exports = async (req: any, res: any) => {
   const { id } = req.params;
 
-  const response = await getCashierByIdService(id);
+  const response = await getCategoryByIdService(id);
 
   return res.status(200).json(response);
 };

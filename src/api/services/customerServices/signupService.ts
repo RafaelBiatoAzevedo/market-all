@@ -38,7 +38,7 @@ module.exports = async (customerData: TCustomerSignup) => {
 
   const result = await createCustomer(customerData);
 
-  if (result === null) throw Error('No insert customer');
+  if (result === null) throw Error('No inserted customer');
 
   delete result.password;
   return result;

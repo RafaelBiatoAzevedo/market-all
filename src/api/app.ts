@@ -14,6 +14,9 @@ app.use('/auth', routes.routerAuth);
 app.use('/devices', routes.routerDevices);
 app.use('/companies', routes.routerCompanies);
 app.use('/cashiers', routes.routerCashiers);
+app.use('/categories', routes.routerCategories);
+// app.use('/orders', routes.routerOrders);
+// app.use('/products', routes.routerProducts);
 
 app.use(responseError);
 

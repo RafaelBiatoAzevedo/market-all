@@ -1,49 +1,49 @@
 import express from 'express';
 const rescue = require('express-rescue');
 
-const routerCompanies = express.Router();
+const routerCashiers = express.Router();
 
 const {
   getCashiersAllController,
   getCashierByIdController,
-  openCashierController,
+  createCashierController,
   closeCashierController,
   blockCashierController,
 } = require('../controllers/cashiersControllers');
 
-const { cashiersErrors, tokenErrors } = require('../middlewares/errors');
+const { tokenErrors, cashiersErrors } = require('../middlewares/errors');
 const authorization = require('../middlewares/authorization');
 
-routerCompanies.get(
+routerCashiers.get(
   '/',
   rescue(authorization),
   rescue((req: any, res: any) => getCashiersAllController(req, res))
 );
 
-routerCompanies.get(
+routerCashiers.get(
   '/:id',
   rescue(authorization),
   rescue((req: any, res: any) => getCashierByIdController(req, res))
 );
 
-routerCompanies.post(
+routerCashiers.post(
   '/',
   rescue(authorization),
-  rescue((req: any, res: any) => openCashierController(req, res))
+  rescue((req: any, res: any) => createCashierController(req, res))
 );
 
-routerCompanies.patch(
-  '/',
+routerCashiers.patch(
+  '/:id/close',
   rescue(authorization),
   rescue((req: any, res: any) => closeCashierController(req, res))
 );
 
-routerCompanies.patch(
-  '/',
+routerCashiers.patch(
+  '/:id/block',
   rescue(authorization),
   rescue((req: any, res: any) => blockCashierController(req, res))
 );
 
-routerCompanies.use(tokenErrors, cashiersErrors);
+routerCashiers.use(tokenErrors, cashiersErrors);
 
 module.exports = routerCashiers;

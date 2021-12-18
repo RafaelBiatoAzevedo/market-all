@@ -1,7 +1,7 @@
 module.exports = (err: any, _req: any, _res: any, next: any) => {
-  if (err.message === 'Not found device') {
+  if (err.message === 'No inserted device') {
     const newError: any = new Error(err.message);
-    newError.status = 404;
+    newError.status = 409;
     return next(newError);
   }
 
