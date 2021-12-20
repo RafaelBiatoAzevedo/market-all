@@ -1,13 +1,13 @@
 const createCashierService = require('./createCashierService');
+const createTransactionService = require('./createTransactionService');
 const getCashiersAllService = require('./getCashiersAllService');
 const getCashierByIdService = require('./getCashierByIdService');
-const updateCashierService = require('./updateCashierService');
 const blockCashierService = require('./blockCashierService');
 
 module.exports = {
   createCashierService,
+  createTransactionService,
   getCashiersAllService,
   getCashierByIdService,
-  updateCashierService,
   blockCashierService,
 };

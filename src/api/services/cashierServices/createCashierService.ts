@@ -54,6 +54,7 @@ module.exports = async (cashierData: TCashierData) => {
     giftPaymentsSum: 0,
     depositTransactionsSum: 0,
     withdrawTransactionsSum: 0,
+    paymentsTransactionsSum: 0,
     moneyReceivedAmount: 0,
     cardReceivedAmount: 0,
     pixReceivedAmount: 0,

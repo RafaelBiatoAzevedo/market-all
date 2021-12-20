@@ -4,13 +4,14 @@ export type TTransaction = {
   updatedAt: string;
   segment: string;
   company: string;
-  cashierId: string;
+  device: string;
+  cashier: string;
   transactionType: 'payment' | 'deposit' | 'withdraw' | 'change';
   paymentType:
     | 'money'
     | 'card'
     | 'debit_card'
-    | 'boleto'
+    | 'ticket'
     | 'prepaid'
     | 'pix'
     | 'gift';
@@ -18,7 +19,6 @@ export type TTransaction = {
   amount: number;
   canceled: boolean;
   status: string;
-  device: string;
   order: string;
   observation: string;
 };

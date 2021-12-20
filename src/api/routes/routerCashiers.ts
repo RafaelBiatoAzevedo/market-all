@@ -9,7 +9,10 @@ const {
   createCashierController,
   closeCashierController,
   blockCashierController,
-} = require('../controllers/cashiersControllers');
+  createWithdrawController,
+  createDepositController,
+  createPaymentController,
+} = require('../controllers/cashierControllers');
 
 const { tokenErrors, cashiersErrors } = require('../middlewares/errors');
 const authorization = require('../middlewares/authorization');
@@ -30,6 +33,24 @@ routerCashiers.post(
   '/',
   rescue(authorization),
   rescue((req: any, res: any) => createCashierController(req, res))
+);
+
+routerCashiers.post(
+  '/:id/withdraw',
+  rescue(authorization),
+  rescue((req: any, res: any) => createWithdrawController(req, res))
+);
+
+routerCashiers.post(
+  '/:id/deposit',
+  rescue(authorization),
+  rescue((req: any, res: any) => createDepositController(req, res))
+);
+
+routerCashiers.post(
+  '/:id/payment',
+  rescue(authorization),
+  rescue((req: any, res: any) => createPaymentController(req, res))
 );
 
 routerCashiers.patch(

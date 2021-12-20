@@ -25,6 +25,7 @@ export type TCashier = {
   giftPaymentsSum: number;
   depositTransactionsSum: number;
   withdrawTransactionsSum: number;
+  paymentsTransactionsSum: number;
   moneyReceivedAmount: number;
   cardReceivedAmount: number;
   pixReceivedAmount: number;

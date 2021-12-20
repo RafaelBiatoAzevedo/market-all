@@ -1,5 +1,9 @@
 module.exports = (err: any, _req: any, _res: any, next: any) => {
-  if (err.message === 'Invalid body schema. Correct and try again.') {
+  if (
+    err.message === 'Invalid body schema. Correct and try again.' ||
+    err.message === 'Not found paymentType in entries' ||
+    err.message === 'Not found cardType in entries'
+  ) {
     const newError: any = new Error(err.message);
     newError.status = 400;
     return next(newError);
@@ -9,7 +13,8 @@ module.exports = (err: any, _req: any, _res: any, next: any) => {
     err.message === 'No opened cashier' ||
     err.message === 'No closed cashier' ||
     err.message === 'No blocked cashier' ||
-    err.message === 'Cashier already registered'
+    err.message === 'Cashier already registered' ||
+    err.message === 'No inserted transaction in cashier'
   ) {
     const newError: any = new Error(err.message);
     newError.status = 409;

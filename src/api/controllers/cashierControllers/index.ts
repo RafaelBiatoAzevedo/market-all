@@ -1,15 +1,19 @@
 const createCashierController = require('./createCashierController');
+const createWithdrawController = require('./createWithdrawController');
+const createDepositController = require('./createDepositController');
+const createPaymentController = require('./createPaymentController');
 const getCashiersAllController = require('./getCashiersAllController');
 const getCashierByIdController = require('./getCashierByIdController');
-const updateCashierController = require('./updateCashierController');
 const blockCashierController = require('./blockCashierController');
 const closeCashierController = require('./closeCashierController');
 
 module.exports = {
   createCashierController,
+  createWithdrawController,
+  createDepositController,
+  createPaymentController,
   getCashiersAllController,
   getCashierByIdController,
-  updateCashierController,
   blockCashierController,
   closeCashierController,
 };
