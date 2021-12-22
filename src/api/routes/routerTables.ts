@@ -25,7 +25,7 @@ routerTables.get(
 );
 
 routerTables.post(
-  '/',
+  '/create',
   rescue(authorization),
   rescue((req: any, res: any) => createTablesController(req, res))
 );

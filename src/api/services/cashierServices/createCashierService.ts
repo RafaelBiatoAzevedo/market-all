@@ -19,8 +19,8 @@ type TCashierData = {
 };
 
 module.exports = async (cashierData: TCashierData) => {
-  const { segmentId, companyId, deviceId } = cashierData;
   const { error } = schema.validate(cashierData);
+  const { segmentId, companyId, deviceId } = cashierData;
 
   if (error) {
     throw Error('Invalid body schema. Correct and try again.');

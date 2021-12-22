@@ -18,7 +18,7 @@ app.use('/categories', routes.routerCategories);
 app.use('/products', routes.routerProducts);
 app.use('/tables', routes.routerTables);
 app.use('/tickets', routes.routerTickets);
-// app.use('/orders', routes.routerOrders);
+app.use('/orders', routes.routerOrders);
 
 app.use(responseError);
 

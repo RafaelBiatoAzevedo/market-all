@@ -17,7 +17,6 @@ const schema = Joi.object({
   manufacturer: Joi.string(),
   deviceModel: Joi.string(),
   serial: Joi.string(),
-  acquirer: Joi.string(),
   os: Joi.string(),
   systemVersion: Joi.string(),
   appVersion: Joi.string(),
@@ -38,6 +37,7 @@ module.exports = async (signinData: TSignin) => {
 
   const customer = await getCustomerForSignin(email, password);
   if (!customer) throw Error('Not found customer');
+  delete customer.password;
 
   let device;
 
@@ -51,10 +51,10 @@ module.exports = async (signinData: TSignin) => {
   } else {
     device = await createDevice({
       ...deviceData,
+      acquirer: customer,
       status: 'active',
       lastSigninAt: new Date(),
       lastSigninBy: customer._id,
-      createdBy: '',
     });
   }
 

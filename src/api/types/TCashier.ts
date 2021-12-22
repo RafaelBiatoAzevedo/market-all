@@ -1,6 +1,6 @@
 import { TCompany } from './TCompany';
 import { TDevice } from './TDevice';
-import { TOrder } from './TOrders';
+import { TOrder } from './TOrder';
 import { TTransaction } from './TTransactions';
 
 export type TCashier = {

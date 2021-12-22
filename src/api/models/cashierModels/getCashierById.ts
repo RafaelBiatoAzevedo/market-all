@@ -28,7 +28,7 @@ module.exports = async (cashierId: string) => {
             as: 'transactions',
           },
         },
-        { $project: { cashierId: 0, 'company.card': 0 } },
+        { $project: { cashierId: 0 } },
       ])
       .toArray()
   );

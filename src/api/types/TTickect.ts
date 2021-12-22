@@ -5,4 +5,5 @@ export type TTicket = {
   name: string;
   status: 'available' | 'in-payment' | 'in-use';
   tableId?: string;
+  company: string;
 };

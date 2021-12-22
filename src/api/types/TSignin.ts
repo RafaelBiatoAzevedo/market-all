@@ -1,3 +1,5 @@
+import { TCustomerSignup } from './TCustomerSignup';
+
 export type TSignin = {
   email: string;
   password: string;
@@ -6,7 +8,7 @@ export type TSignin = {
   manufacturer: string;
   deviceModel: string;
   serial: string;
-  acquirer: string;
+  acquirer: TCustomerSignup;
   os: string;
   systemVersion: string;
   appVersion: string;

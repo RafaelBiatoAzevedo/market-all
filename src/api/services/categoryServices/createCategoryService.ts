@@ -6,6 +6,9 @@ const {
   getCategoryByName,
 } = require('../../models/categoryModels');
 
+const { getCompanyById } = require('../../models/companyModels');
+const { getSegmentById } = require('../../models/segmentModels');
+
 const schema = Joi.object({
   name: Joi.string().required(),
   segment: Joi.string().required(),
@@ -33,6 +36,13 @@ module.exports = async (categoryData: TCategoryData) => {
   if (await getCategoryByName(name)) {
     throw Error('Category already registered');
   }
+
+  const { segment: segmentId, company: companyId } = categoryData;
+
+  const company = await getCompanyById(companyId);
+  const segment = await getSegmentById(segmentId);
+
+  if (!company || !segment) throw Error('Not found company, segment');
 
   const newCategory = {
     ...categoryData,

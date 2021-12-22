@@ -8,9 +8,11 @@ const schema = Joi.object({
   device: Joi.string().required(),
   company: Joi.string().required(),
   amount: Joi.number().required(),
+  order: Joi.string(),
   paymentType: Joi.string(),
   cardType: Joi.string(),
   observation: Joi.string().empty(''),
+  status: Joi.string(),
 });
 
 type TTransactionData = {
@@ -18,9 +20,11 @@ type TTransactionData = {
   segment: string;
   company: string;
   amount: number;
-  paymentType: string;
-  cardType: string;
-  observation: string;
+  paymentType?: string;
+  cardType?: string;
+  observation?: string;
+  order?: string;
+  status?: string;
 };
 
 module.exports = async (

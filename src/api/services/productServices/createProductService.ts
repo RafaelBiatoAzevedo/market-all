@@ -50,6 +50,13 @@ module.exports = async (productData: TProductData) => {
     throw Error('Product already registered');
   }
 
+  const { segment: segmentId, company: companyId } = productData;
+
+  const company = await getCompanyById(companyId);
+  const segment = await getSegmentById(segmentId);
+
+  if (!company || !segment) throw Error('Not found company, segment');
+
   const newProduct = {
     ...productData,
     createdAt: new Date(),

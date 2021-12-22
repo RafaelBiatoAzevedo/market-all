@@ -7,7 +7,25 @@ module.exports = async (customerId: string) => {
   const result = await connection().then((db: any) =>
     db
       .collection('companies')
-      .find({ 'customer._id': new ObjectId(customerId) })
+      .aggregate([
+        { $match: { 'customer._id': new ObjectId(customerId) } },
+        {
+          $lookup: {
+            from: 'cashiers',
+            let: { companyId: '$_id' },
+            pipeline: [
+              {
+                $match: {
+                  $expr: { $eq: ['$company._id', '$$companyId'] },
+                  status: 'open',
+                },
+              },
+            ],
+            as: 'cashiersOpen',
+          },
+        },
+        { $project: { card: 0 } },
+      ])
       .toArray()
   );
 

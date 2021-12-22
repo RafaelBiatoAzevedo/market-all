@@ -3,6 +3,7 @@ const createTransactionService = require('./createTransactionService');
 const getCashiersAllService = require('./getCashiersAllService');
 const getCashierByIdService = require('./getCashierByIdService');
 const blockCashierService = require('./blockCashierService');
+const closeCashierService = require('./closeCashierService');
 
 module.exports = {
   createCashierService,
@@ -10,4 +11,5 @@ module.exports = {
   getCashiersAllService,
   getCashierByIdService,
   blockCashierService,
+  closeCashierService,
 };

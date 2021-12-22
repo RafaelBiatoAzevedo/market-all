@@ -1,11 +1,11 @@
 const createCategoryService = require('./createCategoryService');
 const getCategoriesAllService = require('./getCategoriesAllService');
 const getCategoryByIdService = require('./getCategoryByIdService');
-const updateCategoryService = require('./updateCategoryService');
+const getCategoriesByCompanyIdService = require('./getCategoriesByCompanyIdService');
 
 module.exports = {
   createCategoryService,
   getCategoriesAllService,
   getCategoryByIdService,
-  updateCategoryService,
+  getCategoriesByCompanyIdService,
 };

@@ -8,6 +8,7 @@ const categoriesErrors = require('./categoriesErrors');
 const productsErrors = require('./categoriesErrors');
 const tablesErrors = require('./categoriesErrors');
 const ticketsErrors = require('./ticketsErrors');
+const ordersErrors = require('./ordersErrors');
 
 module.exports = {
   authErrors,
@@ -20,4 +21,5 @@ module.exports = {
   productsErrors,
   tablesErrors,
   ticketsErrors,
+  ordersErrors,
 };

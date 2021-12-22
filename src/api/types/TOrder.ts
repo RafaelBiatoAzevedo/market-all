@@ -13,7 +13,7 @@ export type TOrder = {
   segment: string;
   observation: string;
   company: TCompany;
-  customer: string;
+  customer?: string;
   status:
     | 'open'
     | 'checkout'
@@ -43,7 +43,7 @@ export type TOrder = {
     | 'money'
     | 'card'
     | 'debit_card'
-    | 'boleto'
+    | 'ticket'
     | 'prepaid'
     | 'pix'
     | 'gift';

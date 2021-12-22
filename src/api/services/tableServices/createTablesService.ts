@@ -4,11 +4,13 @@ const { createTables } = require('../../models/tableModels');
 const Joi = require('joi');
 
 const schema = Joi.object({
-  quantityTables: Joi.number().required().max(1000),
+  quantity: Joi.number().required().max(1000),
+  company: Joi.string().required(),
 });
 
 type TTablesBody = {
-  quantityTables: number;
+  quantity: number;
+  company: string;
 };
 
 module.exports = async (tablesBody: TTablesBody) => {
@@ -18,10 +20,10 @@ module.exports = async (tablesBody: TTablesBody) => {
     throw Error('Invalid entries. Correct and try again.');
   }
 
-  const { quantityTables } = tablesBody;
+  const { quantity, company } = tablesBody;
   const tables: TTable[] = [];
 
-  for (let index = 1; index <= quantityTables; index += 1) {
+  for (let index = 1; index <= quantity; index += 1) {
     const nameTable = (index / 1000)
       .toFixed(3)
       .toString()
@@ -33,6 +35,7 @@ module.exports = async (tablesBody: TTablesBody) => {
       updatedAt: new Date(),
       name: nameTable,
       status: 'available',
+      company,
     });
   }
 

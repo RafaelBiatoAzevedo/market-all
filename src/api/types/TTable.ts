@@ -4,4 +4,5 @@ export type TTable = {
   updatedAt: Date;
   name: string;
   status: 'available' | 'in-payment' | 'in-use';
+  company: string;
 };

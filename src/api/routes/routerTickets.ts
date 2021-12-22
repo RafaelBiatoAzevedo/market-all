@@ -25,7 +25,7 @@ routerTickets.get(
 );
 
 routerTickets.post(
-  '/',
+  '/create',
   rescue(authorization),
   rescue((req: any, res: any) => createTicketsController(req, res))
 );

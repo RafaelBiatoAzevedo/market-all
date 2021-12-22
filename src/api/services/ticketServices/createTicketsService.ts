@@ -1,14 +1,17 @@
+import { string } from 'joi';
 import { TTicket } from '../../types/TTickect';
 
 const { createTickets } = require('../../models/ticketModels');
 const Joi = require('joi');
 
 const schema = Joi.object({
-  quantityTickets: Joi.number().required().max(1000),
+  quantity: Joi.number().required().max(1000),
+  company: Joi.string().required(),
 });
 
 type TTicketsBody = {
-  quantityTickets: number;
+  quantity: number;
+  company: string;
 };
 
 module.exports = async (ticketsBody: TTicketsBody) => {
@@ -18,10 +21,10 @@ module.exports = async (ticketsBody: TTicketsBody) => {
     throw Error('Invalid entries. Correct and try again.');
   }
 
-  const { quantityTickets } = ticketsBody;
+  const { quantity, company } = ticketsBody;
   const tickets: TTicket[] = [];
 
-  for (let index = 1; index <= quantityTickets; index += 1) {
+  for (let index = 1; index <= quantity; index += 1) {
     const nameTicket = (index / 1000)
       .toFixed(3)
       .toString()
@@ -33,6 +36,7 @@ module.exports = async (ticketsBody: TTicketsBody) => {
       updatedAt: new Date(),
       name: nameTicket,
       status: 'available',
+      company,
     });
   }
 
