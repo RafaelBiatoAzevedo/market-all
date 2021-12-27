@@ -13,7 +13,8 @@ export type TCashier = {
   user: string;
   status: 'open' | 'closed' | 'blocked';
   transactions: TTransaction[];
-  orders: TOrder;
+  orders: TOrder[];
+  totalAmountSum: number;
   orderAmountMax: number;
   orderAmountAvg: number;
   moneyPaymentsSum: number;

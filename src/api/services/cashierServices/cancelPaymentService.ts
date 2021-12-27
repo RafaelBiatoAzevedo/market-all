@@ -13,5 +13,5 @@ module.exports = async (cashierId: string, transactionId: string) => {
 
   if (result === null) throw Error('No canceled transaction');
 
-  return { response: 'Transaction canceled' };
+  return result;
 };
