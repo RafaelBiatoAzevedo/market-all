@@ -6,6 +6,7 @@ const getCashiersAllController = require('./getCashiersAllController');
 const getCashierByIdController = require('./getCashierByIdController');
 const blockCashierController = require('./blockCashierController');
 const closeCashierController = require('./closeCashierController');
+const cancelPaymentController = require('./cancelPaymentController');
 
 module.exports = {
   createCashierController,
@@ -16,4 +17,5 @@ module.exports = {
   getCashierByIdController,
   blockCashierController,
   closeCashierController,
+  cancelPaymentController,
 };

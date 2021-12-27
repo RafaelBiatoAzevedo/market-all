@@ -12,6 +12,7 @@ const {
   createWithdrawController,
   createDepositController,
   createPaymentController,
+  cancelPaymentController,
 } = require('../controllers/cashierControllers');
 
 const { tokenErrors, cashiersErrors } = require('../middlewares/errors');
@@ -51,6 +52,12 @@ routerCashiers.post(
   '/:id/payment',
   rescue(authorization),
   rescue((req: any, res: any) => createPaymentController(req, res))
+);
+
+routerCashiers.patch(
+  '/:cashierId/payment/:id/cancel',
+  rescue(authorization),
+  rescue((req: any, res: any) => cancelPaymentController(req, res))
 );
 
 routerCashiers.patch(

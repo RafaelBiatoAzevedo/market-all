@@ -28,6 +28,14 @@ module.exports = async (cashierId: string) => {
             as: 'transactions',
           },
         },
+        {
+          $lookup: {
+            from: 'orders',
+            localField: 'cashierId',
+            foreignField: 'cashier',
+            as: 'orders',
+          },
+        },
         { $project: { cashierId: 0 } },
       ])
       .toArray()

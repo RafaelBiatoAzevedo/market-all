@@ -25,6 +25,10 @@ const {
   getTicketsByCompanyIdController,
 } = require('../controllers/ticketControllers');
 
+const {
+  getOrdersByCompanyIdController,
+} = require('../controllers/orderControllers');
+
 const { companiesErrors, tokenErrors } = require('../middlewares/errors');
 const authorization = require('../middlewares/authorization');
 
@@ -62,6 +66,12 @@ routerCompanies.get(
   '/:id/tickets',
   rescue(authorization),
   rescue((req: any, res: any) => getTicketsByCompanyIdController(req, res))
+);
+
+routerCompanies.get(
+  '/:id/orders',
+  rescue(authorization),
+  rescue((req: any, res: any) => getOrdersByCompanyIdController(req, res))
 );
 
 routerCompanies.post(

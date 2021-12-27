@@ -1,5 +1,6 @@
 import { TCard } from '../../types/TCard';
 import { TItem } from '../../types/TItem';
+import { TTransaction } from '../../types/TTransactions';
 
 const Joi = require('joi');
 
@@ -10,6 +11,7 @@ const { getDeviceById } = require('../../models/deviceModels');
 const { getCashierById } = require('../../models/cashierModels');
 
 const schema = Joi.object({
+  _id: Joi.string(),
   segment: Joi.string().required(),
   company: Joi.string().required(),
   device: Joi.string().required(),
@@ -17,20 +19,26 @@ const schema = Joi.object({
   amount: Joi.number().required(),
   subtotal: Joi.number().required(),
   items: Joi.array().required(),
+  itemsCount: Joi.number().required(),
   customer: Joi.string(),
   discountAmount: Joi.number(),
   observation: Joi.string().empty(''),
   table: Joi.string(),
   ticket: Joi.string(),
+  transactions: Joi.array().required(),
+  status: Joi.string(),
+  paidAmount: Joi.number(),
 });
 
 type TOrderData = {
+  _id: string;
   segment: string;
   company: string;
   device: string;
   amount: number;
   subtotal: number;
   items: TItem[];
+  itemsCount: number;
   cashier?: string;
   customer?: string;
   discountAmount?: number;
@@ -39,10 +47,14 @@ type TOrderData = {
   ticket?: string;
   card?: TCard;
   paymentType?: string;
+  transactions: TTransaction[];
+  paidAmount: number;
+  status: string;
 };
 
 module.exports = async (orderData: TOrderData) => {
   const { error } = schema.validate(orderData);
+  console.log(error);
 
   if (error) {
     throw Error('Invalid entries. Correct and try again.');

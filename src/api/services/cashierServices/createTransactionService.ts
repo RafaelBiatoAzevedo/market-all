@@ -4,6 +4,7 @@ const Joi = require('joi');
 const { createTransaction } = require('../../models/transactionModels');
 
 const schema = Joi.object({
+  _id: Joi.string(),
   segment: Joi.string().required(),
   device: Joi.string().required(),
   company: Joi.string().required(),
@@ -16,6 +17,7 @@ const schema = Joi.object({
 });
 
 type TTransactionData = {
+  _id?: string;
   device: string;
   segment: string;
   company: string;
