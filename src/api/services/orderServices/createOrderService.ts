@@ -26,7 +26,7 @@ const schema = Joi.object({
   table: Joi.string(),
   ticket: Joi.string(),
   transactions: Joi.array().required(),
-  status: Joi.string(),
+  status: Joi.string().required(),
   paidAmount: Joi.number(),
 });
 
@@ -54,7 +54,6 @@ type TOrderData = {
 
 module.exports = async (orderData: TOrderData) => {
   const { error } = schema.validate(orderData);
-  console.log(error);
 
   if (error) {
     throw Error('Invalid entries. Correct and try again.');
@@ -79,7 +78,6 @@ module.exports = async (orderData: TOrderData) => {
     ...orderData,
     createdAt: new Date(),
     updatedAt: new Date(),
-    status: 'open',
   });
 
   if (result === null) throw Error('No insert order');
