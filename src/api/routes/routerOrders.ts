@@ -7,6 +7,8 @@ const {
   createOrderController,
   getOrdersAllController,
   getOrderByIdController,
+  updateOrderController,
+  getOrderByTicketIdController,
 } = require('../controllers/orderControllers');
 
 const { ordersErrors, tokenErrors } = require('../middlewares/errors');
@@ -24,10 +26,22 @@ routerOrders.get(
   rescue((req: any, res: any) => getOrderByIdController(req, res))
 );
 
+routerOrders.get(
+  '/tickets/:id',
+  rescue(authorization),
+  rescue((req: any, res: any) => getOrderByTicketIdController(req, res))
+);
+
 routerOrders.post(
   '/',
   rescue(authorization),
   rescue((req: any, res: any) => createOrderController(req, res))
+);
+
+routerOrders.put(
+  '/:id',
+  rescue(authorization),
+  rescue((req: any, res: any) => updateOrderController(req, res))
 );
 
 routerOrders.use(tokenErrors, ordersErrors);

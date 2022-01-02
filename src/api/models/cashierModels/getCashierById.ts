@@ -44,7 +44,7 @@ module.exports = async (cashierId: string) => {
     db
       .collection('orders')
       .aggregate([
-        { $match: { cashier: cashierId } },
+        { $match: { cashier: cashierId, status: { $ne: 'canceled' } } },
         {
           $group: {
             _id: null,

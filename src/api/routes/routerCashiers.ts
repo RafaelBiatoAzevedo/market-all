@@ -15,6 +15,10 @@ const {
   cancelPaymentController,
 } = require('../controllers/cashierControllers');
 
+const {
+  getOrdersByCashierIdController,
+} = require('../controllers/orderControllers');
+
 const { tokenErrors, cashiersErrors } = require('../middlewares/errors');
 const authorization = require('../middlewares/authorization');
 
@@ -28,6 +32,12 @@ routerCashiers.get(
   '/:id',
   rescue(authorization),
   rescue((req: any, res: any) => getCashierByIdController(req, res))
+);
+
+routerCashiers.get(
+  '/:id/orders',
+  rescue(authorization),
+  rescue((req: any, res: any) => getOrdersByCashierIdController(req, res))
 );
 
 routerCashiers.post(

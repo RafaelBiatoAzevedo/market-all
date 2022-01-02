@@ -4,7 +4,7 @@ import { TTransaction } from '../../types/TTransactions';
 
 const Joi = require('joi');
 
-const { createOrder } = require('../../models/orderModels');
+const { updateOrder } = require('../../models/orderModels');
 const { getSegmentById } = require('../../models/segmentModels');
 const { getCompanyById } = require('../../models/companyModels');
 const { getDeviceById } = require('../../models/deviceModels');
@@ -28,6 +28,8 @@ const schema = Joi.object({
   ticket: Joi.string(),
   status: Joi.string().required(),
   paidAmount: Joi.number(),
+  createdAt: Joi.date(),
+  updatedAt: Joi.date(),
 });
 
 type TOrderData = {
@@ -50,9 +52,11 @@ type TOrderData = {
   transactions: TTransaction[];
   paidAmount: number;
   status: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
-module.exports = async (orderData: TOrderData) => {
+module.exports = async (orderId: string, orderData: TOrderData) => {
   const { error } = schema.validate(orderData);
 
   if (error) {
@@ -74,9 +78,8 @@ module.exports = async (orderData: TOrderData) => {
   if (!company || !device || !segment || !cashier)
     throw Error('Not found company, segment, device or cashier');
 
-  const result = await createOrder({
+  const result = await updateOrder(orderId, {
     ...orderData,
-    createdAt: new Date(),
     updatedAt: new Date(),
   });
 
