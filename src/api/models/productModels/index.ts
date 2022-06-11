@@ -4,6 +4,7 @@ const getProductBySku = require('./getProductBySku');
 const getProductsAll = require('./getProductsAll');
 const getProductByName = require('./getProductByName');
 const getProductsByCompanyId = require('./getProductsByCompanyId');
+const getProductsByQuery = require('./getProductsByQuery');
 
 module.exports = {
   createProduct,
@@ -12,4 +13,5 @@ module.exports = {
   getProductsAll,
   getProductByName,
   getProductsByCompanyId,
+  getProductsByQuery,
 };

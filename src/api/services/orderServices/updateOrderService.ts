@@ -9,6 +9,7 @@ const { getSegmentById } = require('../../models/segmentModels');
 const { getCompanyById } = require('../../models/companyModels');
 const { getDeviceById } = require('../../models/deviceModels');
 const { getCashierById } = require('../../models/cashierModels');
+const { updateStatusTicket } = require('../../models/ticketModels');
 
 const schema = Joi.object({
   _id: Joi.string(),
@@ -30,6 +31,8 @@ const schema = Joi.object({
   paidAmount: Joi.number(),
   createdAt: Joi.date(),
   updatedAt: Joi.date(),
+  personsQuantity: Joi.number(),
+  tipPercentage: Joi.number(),
 });
 
 type TOrderData = {
@@ -54,6 +57,8 @@ type TOrderData = {
   status: string;
   createdAt: Date;
   updatedAt: Date;
+  personsQuantity: number;
+  tipPercentage: number;
 };
 
 module.exports = async (orderId: string, orderData: TOrderData) => {
@@ -78,8 +83,28 @@ module.exports = async (orderId: string, orderData: TOrderData) => {
   if (!company || !device || !segment || !cashier)
     throw Error('Not found company, segment, device or cashier');
 
+  if (orderData.ticket) {
+    if (orderData.status === 'open') {
+      await updateStatusTicket(orderData.ticket, 'in-use');
+    }
+
+    if (orderData.status === 'checkout') {
+      await updateStatusTicket(orderData.ticket, 'in-payment');
+    }
+
+    if (orderData.status === 'closed') {
+      await updateStatusTicket(orderData.ticket, 'available');
+    }
+  }
+
+  const itemsSync = orderData.items.map((item) => ({
+    ...item,
+    toSync: false,
+  }));
+
   const result = await updateOrder(orderId, {
     ...orderData,
+    items: itemsSync,
     updatedAt: new Date(),
   });
 

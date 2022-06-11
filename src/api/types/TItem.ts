@@ -18,4 +18,5 @@ export type TItem = {
   cashier: string;
   order: string;
   canceled: boolean;
+  toSync?: boolean;
 };
